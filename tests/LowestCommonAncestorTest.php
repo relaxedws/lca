@@ -11,7 +11,7 @@ class LowestCommonAncestorTest extends \PHPUnit_Framework_TestCase
 {
     public $ancestor;
     public $graph;
-    public function setUp()
+    public function testlca()
     {
         $graph = new Graph();
 
