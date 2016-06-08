@@ -9,7 +9,6 @@ use Graphp\Algorithms\Search\BreadthFirst;
 
 class LowestCommonAncestorTest extends \PHPUnit_Framework_TestCase
 {
-    public $ancestor;
     public $graph;
     public function testlca()
     {
@@ -59,9 +58,13 @@ class LowestCommonAncestorTest extends \PHPUnit_Framework_TestCase
         $eighteen->createEdgeTo($twenty_one);
 
         $lca = new LowestCommonAncestor($graph);
-        $ancestor = $lca->find($thirteen, $fourteen);
-        $result = $ancestor->getId();
-        // Returns the result
-        $this->assertEquals('Four', $result);
+        $test_node1 = $lca->find($thirteen, $fourteen);
+        $this->assertEquals('Four', $test_node1->getId());
+        $test_node2 = $lca->find($eleven, $fifteen);
+        $this->assertEquals('Five', $test_node2->getId());
+        $test_node3 = $lca->find($sixteen, $seventeen);
+        $this->assertEquals('One', $test_node3->getId());
+        $test_node4 = $lca->find($nine, $seventeen);
+        $this->assertEquals('Nine', $test_node4->getId());
     }
 }

@@ -53,4 +53,4 @@ $eighteen->createEdgeTo($twenty_one);
 
 // Search.
 $lca = new LCA($graph);
-$ancestor = $lca->find($thirteen, $fourteen);
+$ancestor = $lca->find($twenty, $seventeen);
