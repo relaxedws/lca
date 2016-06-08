@@ -58,6 +58,8 @@ class LowestCommonAncestorTest extends \PHPUnit_Framework_TestCase
         $eighteen->createEdgeTo($twenty_one);
 
         $lca = new LowestCommonAncestor($graph);
+
+        //Test cases for different pair of nodes.   
         $test_node1 = $lca->find($thirteen, $fourteen);
         $this->assertEquals('Four', $test_node1->getId());
         $test_node2 = $lca->find($eleven, $fifteen);
