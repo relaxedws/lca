@@ -7,7 +7,7 @@ use Fhaculty\Graph\Graph;
 use Graphp\Algorithms\Search\BreadthFirst;
 
 class LowestCommonAncestor {
-
+  
   function __construct(Graph $graph) {
     $this->graph = $graph;
   }
