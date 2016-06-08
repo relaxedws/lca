@@ -64,10 +64,4 @@ class LowestCommonAncestorTest extends \PHPUnit_Framework_TestCase
         // Returns the result
         $this->assertEquals('Four', $result);
     }
-
-    protected function tearDown()
-    {
-    }
-
-
 }
