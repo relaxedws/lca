@@ -66,5 +66,7 @@ class LowestCommonAncestorTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('One', $test_node3->getId());
         $test_node4 = $lca->find($nine, $seventeen);
         $this->assertEquals('Nine', $test_node4->getId());
+        $test_node5 = $lca->find($twenty, $nineteen);
+        $this->assertEquals('Seventeen', $test_node5->getId());
     }
 }
