@@ -7,7 +7,7 @@ use Relaxed\LCA\LowestCommonAncestor;
 
 class LowestCommonAncestorTest extends \PHPUnit_Framework_TestCase
 {
-    public function testLca()
+    public function testBasicGraph()
     {
         $graph = new Graph();
         //Creating new Graph with 21 nodes.
@@ -36,7 +36,7 @@ class LowestCommonAncestorTest extends \PHPUnit_Framework_TestCase
 
         $lca = new LowestCommonAncestor($graph);
 
-        //Test cases for different pair of nodes.   
+        //Test cases for different pair of nodes.
         $test_node1 = $lca->find($vertices['node_14'], $vertices['node_15']);
         $this->assertEquals('node_12', $test_node1->getId());
         $test_node2 = $lca->find($vertices['node_11'], $vertices['node_15']);
@@ -47,6 +47,73 @@ class LowestCommonAncestorTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('node_9', $test_node4->getId());
         $test_node5 = $lca->find($vertices['node_20'], $vertices['node_19']);
         $this->assertEquals('node_17', $test_node5->getId());
+    }
+
+    public function testbitComplexGraph()
+    {
+        $graph = new Graph();
+        //Creating new Graph with 21 nodes.
+        $vertices = $this->generateVertices($graph, 8);
+        //Creating edges starting from root(node_1) to node_21
+        $vertices['node_1']->createEdgeTo($vertices['node_2']);
+        $vertices['node_2']->createEdgeTo($vertices['node_3']);
+        $vertices['node_2']->createEdgeTo($vertices['node_5']);
+        $vertices['node_2']->createEdgeTo($vertices['node_4']);
+        $vertices['node_3']->createEdgeTo($vertices['node_7']);
+        $vertices['node_3']->createEdgeTo($vertices['node_6']);
+        $vertices['node_4']->createEdgeTo($vertices['node_6']);
+        $vertices['node_5']->createEdgeTo($vertices['node_8']);
+        $vertices['node_6']->createEdgeTo($vertices['node_8']);
+
+        $lca = new LowestCommonAncestor($graph);
+
+        $test_node1 = $lca->find($vertices['node_2'], $vertices['node_3']);
+        $this->assertEquals('node_2', $test_node1->getId());
+        $test_node2 = $lca->find($vertices['node_3'], $vertices['node_4']);
+        $this->assertEquals('node_2', $test_node2->getId());
+        $test_node3 = $lca->find($vertices['node_6'], $vertices['node_4']);
+        $this->assertEquals('node_4', $test_node3->getId());
+        $test_node4 = $lca->find($vertices['node_6'], $vertices['node_7']);
+        $this->assertEquals('node_3', $test_node4->getId());
+        $test_node5 = $lca->find($vertices['node_6'], $vertices['node_5']);
+        $this->assertEquals('node_2', $test_node5->getId());
+
+    }
+
+    public function testmostComplexGraph()
+    {
+        $graph = new Graph();
+        //Creating new Graph with 21 nodes.
+        $vertices = $this->generateVertices($graph, 9);
+        //Creating edges starting from root(node_1) to node_21
+        $vertices['node_1']->createEdgeTo($vertices['node_2']);
+        $vertices['node_1']->createEdgeTo($vertices['node_3']);
+        $vertices['node_1']->createEdgeTo($vertices['node_4']);
+        $vertices['node_2']->createEdgeTo($vertices['node_5']);
+        $vertices['node_2']->createEdgeTo($vertices['node_7']);
+        $vertices['node_3']->createEdgeTo($vertices['node_6']);
+        $vertices['node_3']->createEdgeTo($vertices['node_7']);
+        $vertices['node_3']->createEdgeTo($vertices['node_5']);
+        $vertices['node_4']->createEdgeTo($vertices['node_6']);
+        $vertices['node_4']->createEdgeTo($vertices['node_8']);
+        $vertices['node_5']->createEdgeTo($vertices['node_7']);
+        $vertices['node_5']->createEdgeTo($vertices['node_8']);
+        $vertices['node_6']->createEdgeTo($vertices['node_7']);
+        $vertices['node_6']->createEdgeTo($vertices['node_8']);
+
+        $lca = new LowestCommonAncestor($graph);
+
+        $test_node1 = $lca->find($vertices['node_5'], $vertices['node_7']);
+        $this->assertEquals('node_5', $test_node1->getId());
+        $test_node2 = $lca->find($vertices['node_7'], $vertices['node_8']);
+        $this->assertEquals('node_2', $test_node2->getId());
+        $test_node3 = $lca->find($vertices['node_7'], $vertices['node_5']);
+        $this->assertEquals('node_2', $test_node3->getId());
+        $test_node4 = $lca->find($vertices['node_2'], $vertices['node_8']);
+        $this->assertEquals('node_2', $test_node4->getId());
+        $test_node5 = $lca->find($vertices['node_8'], $vertices['node_2']);
+        $this->assertEquals('node_1', $test_node5->getId());
+
     }
 
     /**
