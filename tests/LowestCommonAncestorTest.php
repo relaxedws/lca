@@ -19,6 +19,8 @@ class LowestCommonAncestorTest extends \PHPUnit_Framework_TestCase
         $vertices['node_3']->createEdgeTo($vertices['node_8']);
         $vertices['node_2']->createEdgeTo($vertices['node_4']);
         $vertices['node_4']->createEdgeTo($vertices['node_5']);
+        //Loop over the same node.
+        $vertices['node_5']->createEdgeTo($vertices['node_5']);
         $vertices['node_4']->createEdgeTo($vertices['node_6']);
         $vertices['node_4']->createEdgeTo($vertices['node_7']);
         $vertices['node_5']->createEdgeTo($vertices['node_11']);
@@ -46,8 +48,10 @@ class LowestCommonAncestorTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('node_1', $test_node3->getId());
         $test_node4 = $lca->find($vertices['node_9'], $vertices['node_17']);
         $this->assertEquals('node_9', $test_node4->getId());
-        $test_node5 = $lca->find($vertices['node_20'], $vertices['node_19']);
-        $this->assertEquals('node_17', $test_node5->getId());
+        $test_node5 = $lca->find($vertices['node_5'], $vertices['node_13']);
+        $this->assertEquals('node_4', $test_node5->getId());
+        $test_node6 = $lca->find($vertices['node_5'], $vertices['node_5']);
+        $this->assertEquals('node_5', $test_node6->getId());
     }
 
     //Graphical representation for the Complex Graph is in pictures folder.
@@ -87,7 +91,7 @@ class LowestCommonAncestorTest extends \PHPUnit_Framework_TestCase
     {
         $graph = new Graph();
         //Creating new Graph with 9 nodes.
-        $vertices = $this->generateVertices($graph, 9);
+        $vertices = $this->generateVertices($graph, 10);
         //Creating edges starting from root(node_1) to node_9
         $vertices['node_1']->createEdgeTo($vertices['node_2']);
         $vertices['node_1']->createEdgeTo($vertices['node_3']);
@@ -110,12 +114,16 @@ class LowestCommonAncestorTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('node_5', $test_node1->getId());
         $test_node2 = $lca->find($vertices['node_7'], $vertices['node_8']);
         $this->assertEquals('node_2', $test_node2->getId());
-        $test_node3 = $lca->find($vertices['node_7'], $vertices['node_5']);
-        $this->assertEquals('node_2', $test_node3->getId());
+        //Same node passed as remote and local
+        $test_node3 = $lca->find($vertices['node_7'], $vertices['node_7']);
+        $this->assertEquals('node_7', $test_node3->getId());
         $test_node4 = $lca->find($vertices['node_2'], $vertices['node_8']);
         $this->assertEquals('node_2', $test_node4->getId());
         $test_node5 = $lca->find($vertices['node_8'], $vertices['node_2']);
         $this->assertEquals('node_1', $test_node5->getId());
+        //For the node with no parent: No common parents found.
+        $test_node6 = $lca->find($vertices['node_8'], $vertices['node_10']);
+        $this->assertEquals(NULL, $test_node6);
 
     }
 
