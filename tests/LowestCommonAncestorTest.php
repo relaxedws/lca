@@ -54,9 +54,9 @@ class LowestCommonAncestorTest extends \PHPUnit_Framework_TestCase
     public function testbitComplexGraph()
     {
         $graph = new Graph();
-        //Creating new Graph with 21 nodes.
+        //Creating new Graph with 8 nodes.
         $vertices = $this->generateVertices($graph, 8);
-        //Creating edges starting from root(node_1) to node_21
+        //Creating edges starting from root(node_1) to node_8
         $vertices['node_1']->createEdgeTo($vertices['node_2']);
         $vertices['node_2']->createEdgeTo($vertices['node_3']);
         $vertices['node_2']->createEdgeTo($vertices['node_5']);
@@ -86,9 +86,9 @@ class LowestCommonAncestorTest extends \PHPUnit_Framework_TestCase
     public function testmostComplexGraph()
     {
         $graph = new Graph();
-        //Creating new Graph with 21 nodes.
+        //Creating new Graph with 9 nodes.
         $vertices = $this->generateVertices($graph, 9);
-        //Creating edges starting from root(node_1) to node_21
+        //Creating edges starting from root(node_1) to node_9
         $vertices['node_1']->createEdgeTo($vertices['node_2']);
         $vertices['node_1']->createEdgeTo($vertices['node_3']);
         $vertices['node_1']->createEdgeTo($vertices['node_4']);
@@ -119,12 +119,6 @@ class LowestCommonAncestorTest extends \PHPUnit_Framework_TestCase
 
     }
 
-    /**
-     * Function to create multiple vertices.
-     * @param Graph $graph
-     * @param int $count
-     * @return \Fhaculty\Graph\Vertex[]
-     */
     public function generateVertices(Graph $graph, $count = 5)
     {
         for ($i = 1; $i <= $count; $i++)
