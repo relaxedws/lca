@@ -7,6 +7,7 @@ use Relaxed\LCA\LowestCommonAncestor;
 
 class LowestCommonAncestorTest extends \PHPUnit_Framework_TestCase
 {
+    //Graphical representation for the Basic Graph is in pictures folder.
     public function testBasicGraph()
     {
         $graph = new Graph();
@@ -49,6 +50,7 @@ class LowestCommonAncestorTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('node_17', $test_node5->getId());
     }
 
+    //Graphical representation for the Complex Graph is in pictures folder.
     public function testbitComplexGraph()
     {
         $graph = new Graph();
@@ -80,6 +82,7 @@ class LowestCommonAncestorTest extends \PHPUnit_Framework_TestCase
 
     }
 
+    //Graphical representation for the Most Complex Graph is in pictures folder.
     public function testmostComplexGraph()
     {
         $graph = new Graph();
