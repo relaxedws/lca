@@ -3,12 +3,15 @@
 namespace Relaxed\LCA\Test;
 
 use Fhaculty\Graph\Graph;
+use Graphp\Algorithms\Search\BreadthFirst;
 use Relaxed\LCA\LowestCommonAncestor;
 use UnderflowException;
 
 class LowestCommonAncestorTest extends \PHPUnit_Framework_TestCase
 {
-    //Graphical representation for the Basic Graph is in pictures folder.
+    /**
+     * Graphical representation for the Basic Graph is in pictures folder.
+     */
     public function testBasicGraph()
     {
         $graph = new Graph();
@@ -41,7 +44,7 @@ class LowestCommonAncestorTest extends \PHPUnit_Framework_TestCase
         $lca = new LowestCommonAncestor($graph);
 
         //Test cases for different pair of nodes.
-        $test_node1 = $lca->find($vertices['node_14'], $vertices['node_15']);
+        $test_node1 = $lca->find($vertices['node_14'], $vertices['node_15'], BreadthFirst::DIRECTION_REVERSE);
         $this->assertEquals('node_12', $test_node1->getId());
         $test_node2 = $lca->find($vertices['node_11'], $vertices['node_15']);
         $this->assertEquals('node_5', $test_node2->getId());
@@ -55,7 +58,9 @@ class LowestCommonAncestorTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('node_5', $test_node6->getId());
     }
 
-    //Graphical representation for the Complex Graph is in pictures folder.
+    /**
+     * Graphical representation for the Complex Graph is in pictures folder.
+     */
     public function testbitComplexGraph()
     {
         $graph = new Graph();
@@ -87,13 +92,15 @@ class LowestCommonAncestorTest extends \PHPUnit_Framework_TestCase
 
     }
 
-    //Graphical representation for the Most Complex Graph is in pictures folder.
+    /**
+     * Graphical representation for the Most Complex Graph is in pictures folder.
+     */
     public function testmostComplexGraph()
     {
         $graph = new Graph();
         //Creating new Graph with 9 nodes.
         $vertices = $this->generateVertices($graph, 10);
-        //Creating edges starting from root(node_1) to node_9
+        //Creating edges starting from root(node_1) to node_10.
         $vertices['node_1']->createEdgeTo($vertices['node_2']);
         $vertices['node_1']->createEdgeTo($vertices['node_3']);
         $vertices['node_1']->createEdgeTo($vertices['node_4']);
@@ -109,6 +116,8 @@ class LowestCommonAncestorTest extends \PHPUnit_Framework_TestCase
         $vertices['node_6']->createEdgeTo($vertices['node_7']);
         $vertices['node_6']->createEdgeTo($vertices['node_8']);
 
+        //Node 10 doesn't have any parent or child.
+
         $lca = new LowestCommonAncestor($graph);
 
         $test_node1 = $lca->find($vertices['node_5'], $vertices['node_7']);
@@ -122,16 +131,21 @@ class LowestCommonAncestorTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('node_2', $test_node4->getId());
         $test_node5 = $lca->find($vertices['node_8'], $vertices['node_2']);
         $this->assertEquals('node_1', $test_node5->getId());
-        //For the node with no parent: No common parents found.
+//        For the node with no parent: No common parents found.
         try {
-            $test_node6 = $lca->find($vertices['node_8'], $vertices['node_10']);
+            $lca->find($vertices['node_8'], $vertices['node_10']);
             $this->fail('Exception was not thrown.');
         }
         catch (UnderflowException $e){
-            $this->pass('Exception was thrown correctly');
+            $this->assertTrue(TRUE);
         }
     }
 
+    /**
+     * @param Graph $graph
+     * @param int $count
+     * @return \Fhaculty\Graph\Vertex[]
+     */
     public function generateVertices(Graph $graph, $count = 5)
     {
         for ($i = 1; $i <= $count; $i++)
