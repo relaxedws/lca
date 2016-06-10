@@ -131,7 +131,7 @@ class LowestCommonAncestorTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('node_2', $test_node4->getId());
         $test_node5 = $lca->find($vertices['node_8'], $vertices['node_2']);
         $this->assertEquals('node_1', $test_node5->getId());
-//        For the node with no parent: No common parents found.
+        //For the node with no parent: No common parents found.
         try {
             $lca->find($vertices['node_8'], $vertices['node_10']);
             $this->fail('Exception was not thrown.');
