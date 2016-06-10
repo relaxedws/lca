@@ -9,9 +9,6 @@ use Fhaculty\Graph\Exception\UnderflowException;
 class LowestCommonAncestor
 {
     /**
-     * @param Vertex $local
-     * @param Vertex $remote
-     * @return Lowest common ancestor from the graph.
      * The function finds out the lowest common ancestor(LCA) of two nodes.
      *              1
      *            /  \
@@ -20,6 +17,9 @@ class LowestCommonAncestor
      *        3    4    6
      *  For example: LCA of (3,4) would be 2
      *  LCA of (3,6) would be 1.
+     * @param Vertex $local
+     * @param Vertex $remote
+     * @return Lowest common ancestor from the graph.
      */
     public function find(Vertex $local, Vertex $remote)
     {
