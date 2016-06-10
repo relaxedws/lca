@@ -126,7 +126,8 @@ class LowestCommonAncestorTest extends \PHPUnit_Framework_TestCase
         try {
             $test_node6 = $lca->find($vertices['node_8'], $vertices['node_10']);
             $this->fail('Exception was not thrown.');
-        }catch (UnderflowException $e){
+        }
+        catch (UnderflowException $e){
             $this->pass('Exception was thrown correctly');
         }
     }
