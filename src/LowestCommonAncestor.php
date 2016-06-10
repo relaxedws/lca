@@ -17,7 +17,7 @@ class LowestCommonAncestor
      */
     public function find(Vertex $local, Vertex $remote)
     {
-        $direction = BreadthFirst::DIRECTION_REVERSE
+        $direction = BreadthFirst::DIRECTION_REVERSE;
         // Use BFS algorithm to get all vertices starting with $local to the root.
         $bfs_local = new BreadthFirst($local);
         $vertices_local = $bfs_local->setDirection($direction)->getVertices();
