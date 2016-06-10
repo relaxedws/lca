@@ -3,6 +3,8 @@
 namespace Relaxed\LCA\Test;
 
 use Fhaculty\Graph\Graph;
+use Graphp\Algorithms\Search\BreadthFirst;
+use phpDocumentor\Reflection\Types\Null_;
 use Relaxed\LCA\LowestCommonAncestor;
 
 class LowestCommonAncestorTest extends \PHPUnit_Framework_TestCase
@@ -122,9 +124,12 @@ class LowestCommonAncestorTest extends \PHPUnit_Framework_TestCase
         $test_node5 = $lca->find($vertices['node_8'], $vertices['node_2']);
         $this->assertEquals('node_1', $test_node5->getId());
         //For the node with no parent: No common parents found.
-        $test_node6 = $lca->find($vertices['node_8'], $vertices['node_10']);
-        $this->assertEquals(NULL, $test_node6);
-
+        try {
+            $test_node6 = $lca->find($vertices['node_8'], $vertices['node_10']);
+            $this->fail('Exception not thrown correctly');
+        } catch (UnderflowException $e){
+            $this->pass('Exception was thrown correctly');
+        }
     }
 
     public function generateVertices(Graph $graph, $count = 5)
