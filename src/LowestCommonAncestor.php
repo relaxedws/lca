@@ -2,19 +2,12 @@
 
 namespace Relaxed\LCA;
 
-use Exception;
 use Fhaculty\Graph\Vertex;
-use Fhaculty\Graph\Graph;
 use Graphp\Algorithms\Search\BreadthFirst;
 use Fhaculty\Graph\Exception\UnderflowException;
 
 class LowestCommonAncestor
 {
-    public function __construct(Graph $graph)
-    {
-        $this->graph = $graph;
-    }
-
     /**
      * @param Vertex $local
      * @param Vertex $remote
@@ -24,7 +17,6 @@ class LowestCommonAncestor
      */
     public function find(Vertex $local, Vertex $remote, $direction = BreadthFirst::DIRECTION_REVERSE)
     {
-
         // Use BFS algorithm to get all vertices starting with $local to the root.
         $bfs_local = new BreadthFirst($local);
         $vertices_local = $bfs_local->setDirection($direction)->getVertices();
@@ -44,6 +36,5 @@ class LowestCommonAncestor
             throw new UnderflowException("No common ancestor found");
         }
     }
-
 }
 
