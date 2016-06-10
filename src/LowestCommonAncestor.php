@@ -11,12 +11,19 @@ class LowestCommonAncestor
     /**
      * @param Vertex $local
      * @param Vertex $remote
-     * @param int $direction
-     * Traverse in reverse order the graph when searching by default;
-     * @return lowest common ancestor from the graph.
+     * @return Lowest common ancestor from the graph.
+     * The function finds out the lowest common ancestor(LCA) of two nodes.
+     *              1
+     *            /  \
+     *           2    5
+     *         /  \    \
+     *        3    4    6
+     *  For example: LCA of (3,4) would be 2
+     *  LCA of (3,6) would be 1.
      */
     public function find(Vertex $local, Vertex $remote)
     {
+        // Traverse in reverse order starting from $local to the root.
         $direction = BreadthFirst::DIRECTION_REVERSE;
         // Use BFS algorithm to get all vertices starting with $local to the root.
         $bfs_local = new BreadthFirst($local);
@@ -30,7 +37,7 @@ class LowestCommonAncestor
         $vertices_intersection = $vertices_local
             ->getVerticesIntersection($vertices_remote)
             ->getMap();
-        if($lca = reset($vertices_intersection)) {
+        if ($lca = reset($vertices_intersection)) {
             return  $lca;
         }
         else {

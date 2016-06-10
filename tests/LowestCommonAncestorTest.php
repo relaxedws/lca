@@ -44,7 +44,7 @@ class LowestCommonAncestorTest extends \PHPUnit_Framework_TestCase
         $lca = new LowestCommonAncestor($graph);
 
         //Test cases for different pair of nodes.
-        $test_node1 = $lca->find($vertices['node_14'], $vertices['node_15'], BreadthFirst::DIRECTION_REVERSE);
+        $test_node1 = $lca->find($vertices['node_14'], $vertices['node_15']);
         $this->assertEquals('node_12', $test_node1->getId());
         $test_node2 = $lca->find($vertices['node_11'], $vertices['node_15']);
         $this->assertEquals('node_5', $test_node2->getId());
