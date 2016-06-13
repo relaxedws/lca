@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="lca" default="build" basedir=".">
+    <property name="basedir" value="."/>
+
+    <target name="build" depends="phpcs, phpunit" />
+
+    <target name="phpcs">
+        <phpcodesniffer standard="PSR2" description="Run PSR2 standards over the codebase" haltonerror="true">
+            <fileset dir="${basedir}/src">
+                <include name="**/*.php"/>
+            </fileset>
+            <fileset dir="${basedir}/tests">
+                <include name="**/*.php"/>
+            </fileset>
+            <formatter type="full" usefile="false"/>
+        </phpcodesniffer>
+    </target>
+
+    <target name="phpunit" description="Run unit tests using PHPUnit">
+        <exec command="vendor/bin/phpunit -c phpunit.xml.dist" logoutput="/dev/stdout" checkreturn="true" />
+    </target>
+
+</project>

@@ -8,8 +8,19 @@ php:
   - 7.0
   - hhvm
 
+matrix:
+  allow_failures:
+    - php: hhvm
+
 before_install:
   - composer selfupdate
+  - pear channel-discover pear.phing.info
+  - pear install phing/phing
+  - pear install pear/PHP_CodeSniffer
+  - phpenv rehash
 
 install:
-- composer install
+  - composer install
+
+script:
+  - phing -f build.xml
