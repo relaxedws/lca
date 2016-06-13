@@ -39,10 +39,8 @@ class LowestCommonAncestor
             ->getMap();
         if ($lca = reset($vertices_intersection)) {
             return  $lca;
-        }
-        else {
+        } else {
             throw new UnderflowException("No common ancestor found");
         }
     }
 }
-

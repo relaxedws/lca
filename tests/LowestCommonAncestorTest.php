@@ -16,7 +16,7 @@ class LowestCommonAncestorTest extends \PHPUnit_Framework_TestCase
     {
         $graph = new Graph();
         //Creating new Graph with 21 nodes.
-        $vertices = $this->generateVertices($graph,21);
+        $vertices = $this->generateVertices($graph, 21);
         //Creating edges starting from root(node_1) to node_21
         $vertices['node_1']->createEdgeTo($vertices['node_2']);
         $vertices['node_1']->createEdgeTo($vertices['node_3']);
@@ -135,9 +135,8 @@ class LowestCommonAncestorTest extends \PHPUnit_Framework_TestCase
         try {
             $lca->find($vertices['node_8'], $vertices['node_10']);
             $this->fail('Exception was not thrown.');
-        }
-        catch (UnderflowException $e){
-            $this->assertTrue(TRUE);
+        } catch (UnderflowException $e){
+            $this->assertTrue(true);
         }
     }
 
@@ -148,8 +147,7 @@ class LowestCommonAncestorTest extends \PHPUnit_Framework_TestCase
      */
     public function generateVertices(Graph $graph, $count = 5)
     {
-        for ($i = 1; $i <= $count; $i++)
-        {
+        for ($i = 1; $i <= $count; $i++) {
             $ids[] = "node_$i";
         }
         return $graph->createVertices($ids)->getMap();
