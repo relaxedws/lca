@@ -1,4 +1,4 @@
-# Relaxedws/lca [![Build Status](https://travis-ci.org/relaxedws/merge.svg?branch=master)](https://travis-ci.org/relaxedws/merge)
+# Relaxedws/lca [![Build Status](https://travis-ci.org/relaxedws/lca.svg?branch=master)](https://travis-ci.org/relaxedws/lca)
 
 A PHP Library to find Lowest Common ancestor from a Directed Acyclic Graph.
 
