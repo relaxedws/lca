@@ -4,7 +4,7 @@ namespace Relaxed\LCA;
 
 use Fhaculty\Graph\Vertex;
 use Graphp\Algorithms\Search\BreadthFirst;
-use Fhaculty\Graph\Exception\UnderflowException;
+use Relaxed\LCA\LcaException;
 
 class LowestCommonAncestor
 {
@@ -40,7 +40,7 @@ class LowestCommonAncestor
         if ($lca = reset($vertices_intersection)) {
             return  $lca;
         } else {
-            throw new UnderflowException("No common ancestor found");
+            throw new LcaException("No common ancestor found");
         }
     }
 }
