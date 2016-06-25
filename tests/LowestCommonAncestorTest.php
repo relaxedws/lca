@@ -3,9 +3,8 @@
 namespace Relaxed\LCA\Test;
 
 use Fhaculty\Graph\Graph;
-use Graphp\Algorithms\Search\BreadthFirst;
+use Relaxed\LCA\LcaException;
 use Relaxed\LCA\LowestCommonAncestor;
-use UnderflowException;
 
 class LowestCommonAncestorTest extends \PHPUnit_Framework_TestCase
 {
@@ -135,7 +134,7 @@ class LowestCommonAncestorTest extends \PHPUnit_Framework_TestCase
         try {
             $lca->find($vertices['node_8'], $vertices['node_10']);
             $this->fail('Exception was not thrown.');
-        } catch (UnderflowException $e) {
+        } catch (LcaException $e) {
             $this->assertTrue(true);
         }
     }
