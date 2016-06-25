@@ -5,7 +5,7 @@ A PHP Library to find Lowest Common ancestor from a Directed Acyclic Graph.
 ## Insight
 
 This library is built to find the Lowest Common ancestor from a Directed Acyclic graph. It first creates a graph and then stores the parents of
-a node(let's call it node1) in an array(call it array1). To find the parents of node1, we use [Breadth First Search](https://en.wikipedia.org/wiki/Breadth-first_search) traversal in reverse order,
+a node (let's call it node1) in an array(call it array1). To find the parents of node1, we use [Breadth First Search](https://en.wikipedia.org/wiki/Breadth-first_search) traversal in reverse order,
 i.e, From node1 to root. Same is done with node2. Then we find the LCA by the intersection of elements from array1 and array2. The first node returned
 by the intersection is the LCA of the 2 nodes.
 
