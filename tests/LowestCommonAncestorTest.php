@@ -88,7 +88,6 @@ class LowestCommonAncestorTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('node_3', $test_node4->getId());
         $test_node5 = $lca->find($vertices['node_6'], $vertices['node_5']);
         $this->assertEquals('node_2', $test_node5->getId());
-
     }
 
     /**
