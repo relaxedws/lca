@@ -23,7 +23,7 @@ The library can be installed via [composer](http://getcomposer.org).
   "name": "myorg/mylib",
   "description": "A library depending on relaxed/lca",
   "require": {
-    "relaxedws/lca": "dev-master",
+    "relaxedws/lca": "dev-master"
   }
 }
 ````
