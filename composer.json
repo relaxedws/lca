@@ -2,7 +2,7 @@
   "name": "relaxedws/lca",
   "description": "Library used to find lowest common ancestor in graphs.",
   "require": {
-    "graphp/algorithms": "~0.8.0"
+    "graphp/algorithms": "~0.8.1"
   },
   "require-dev": {
     "phpunit/phpunit": "~4.0"
