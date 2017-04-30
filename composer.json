@@ -1,6 +1,7 @@
 {
   "name": "relaxedws/lca",
   "description": "Library used to find lowest common ancestor in graphs.",
+  "license": "GPL-3.0+",
   "require": {
     "graphp/algorithms": "~0"
   },
